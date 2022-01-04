@@ -24,5 +24,11 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
         emit(TodosFilledState(list));
       }
     });
+
+    on<CompleteTodoEvent>((event, emit) {
+      event.todo.completed = event.completed;
+      if(event.todo.completed) state.completedTodos.add(event.todo);
+      emit(TodosFilledState(state.todosList));
+    });
   }
 }

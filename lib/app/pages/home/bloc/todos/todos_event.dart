@@ -21,7 +21,8 @@ class DeleteTodoEvent extends TodosEvent {
 }
 
 class CompleteTodoEvent extends TodosEvent {
-  CompleteTodoEvent(this.todo);  
+  CompleteTodoEvent(this.completed, this.todo);  
 
+  final bool completed;
   final TodoModel todo;
 }
