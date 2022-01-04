@@ -17,8 +17,28 @@ class TodosScreen extends StatelessWidget {
           }
           return ListView.separated(
             itemBuilder: (_, i){
-              return ListTile(
-                title: Text(state.todosList[i].title),
+              return Dismissible(
+                background: Container(
+                  color: Colors.red,
+                  child: const Icon(Icons.delete, color: Colors.white)
+                ),
+                key: UniqueKey(),
+                onDismissed: (_){
+                  context.read<TodosBloc>().add(DeleteTodoEvent(i));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("ToDo ${state.todosList[i].title} deleted"),
+                    )
+                  );
+                },
+                child: ListTile(
+                  title: Text(
+                    state.todosList[i].title,
+                    style: state.todosList[i].completed ? const TextStyle() :
+                    const TextStyle(decorationStyle: TextDecorationStyle.dashed),
+                  ),
+                  subtitle: Text(state.todosList[i].description),
+                ),
               );
             },
             separatorBuilder: (_, i) => const Divider(),

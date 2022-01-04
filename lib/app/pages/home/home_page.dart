@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () => showDialog(
-          context: context, builder: (context) => const AddTodoDialog())
+          context: context, builder: (context) => AddTodoDialog())
       ),
     );
   }

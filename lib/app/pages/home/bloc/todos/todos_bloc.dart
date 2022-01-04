@@ -18,7 +18,11 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     on<DeleteTodoEvent>((event, emit){
       final list = state.todosList;
       list.removeAt(event.index);
-      emit(TodosFilledState(list));
+      if(list.isEmpty) {
+        emit(const TodosInitialState());
+      } else {
+        emit(TodosFilledState(list));
+      }
     });
   }
 }
