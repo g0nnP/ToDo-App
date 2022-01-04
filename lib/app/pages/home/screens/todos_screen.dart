@@ -34,10 +34,18 @@ class TodosScreen extends StatelessWidget {
                 child: ListTile(
                   title: Text(
                     state.todosList[i].title,
-                    style: state.todosList[i].completed ? const TextStyle() :
+                    style: state.todosList[i].completed! ? const TextStyle() :
                     const TextStyle(decorationStyle: TextDecorationStyle.dashed),
                   ),
                   subtitle: Text(state.todosList[i].description),
+                  trailing: Checkbox(
+                    value: state.todosList[i].completed,
+                    onChanged: (value) {
+                      context.read<TodosBloc>().add(
+                        CompleteTodoEvent(value, state.todosList[i])
+                      );
+                    },
+                  )
                 ),
               );
             },

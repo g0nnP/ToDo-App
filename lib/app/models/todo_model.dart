@@ -4,6 +4,6 @@ class TodoModel {
 
   final String title;
   final String description;
-  bool completed;
+  bool? completed;
 
 }

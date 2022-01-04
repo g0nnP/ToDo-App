@@ -20,7 +20,7 @@ class DoneTodosScreen extends StatelessWidget {
               );
             },
             separatorBuilder: (_, i) => const Divider(),
-            itemCount: state.todosList.length
+            itemCount: state.completedTodos.length
           );
         }
       )
